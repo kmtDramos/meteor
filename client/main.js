@@ -82,6 +82,7 @@ var Menu = [
 	{url:"/Clientes",name:"Clientes"},
 	{url:"/Proveedores",name:"Proveedores"},
 	{url:"/Usuarios",name:"Usuarios"}
+	{url:"/Dashboard",name:"Dashboard"}
 ];
 
 // Header
