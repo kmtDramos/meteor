@@ -1,0 +1,25 @@
+﻿<template name="login">
+	<div class="card mx-auto" style="width: 18rem;">
+		<!-- Form login -->
+		<form name="formLogin" class="card-body" onsubmit="return false;">
+			<p class="h5 text-center mb-4">Iniciar sesión</p>
+
+			<div class="md-form">
+				<i class="fa fa-envelope prefix grey-text"></i>
+				<input type="text" name="usuario" class="form-control" value="">
+				<label for="defaultForm-email">Usuario</label>
+			</div>
+
+			<div class="md-form">
+				<i class="fa fa-lock prefix grey-text"></i>
+				<input type="password" name="password" class="form-control" value="">
+				<label for="defaultForm-pass">Contraseña</label>
+			</div>
+
+			<div class="text-center">
+				<button id="login" class="btn elegant-color-dark">Entrar</button>
+			</div>
+		</form>
+		<!-- Form login -->
+	</div>
+</template>

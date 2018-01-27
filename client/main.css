@@ -1,0 +1,62 @@
+/* CSS declarations go here */
+
+
+        /* TEMPLATE STYLES */
+
+		body{
+			background-color: #bbb;
+		}
+		
+        main {
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .widget-wrapper {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .extra-margins {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .divider-new {
+            margin-top: 0;
+        }
+		
+        .list-group-item.active {
+            background-color: #2bbbad;
+            border-color: #2bbbad
+        }
+
+        .list-group-item:not(.active) {
+            color: #222;
+        }
+
+        .list-group-item:not(.active):hover {
+            color: #666;
+        }
+		
+        .card {
+            font-weight: 300;
+			background-color: #fff;
+        }
+		
+        .navbar .btn-group .dropdown-menu a:hover {
+            color: #000 !important;
+        }
+		
+        .navbar .btn-group .dropdown-menu a:active {
+            color: #fff !important;
+        }
+		
+		.navbar-nav .nav-item{
+			padding: 0 .5rem;
+		}
+		
+		.navbar-nav .nav-item a{
+			color: #fff;
+		}
