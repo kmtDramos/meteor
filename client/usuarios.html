@@ -3,84 +3,92 @@
 		<div class="container">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formaUsuario">Agregar</button>
 			<div class="card card-cascade narrower mt-2">
-				<!--Card image-->
-				<div class="view gradient-card-header blue-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
-					<h4 class="font-bold font-up mb-0">Usuarios</h4>
-				</div>
-				<!--/Card image-->
-				<div class="px-4">
-					<!--Table-->
-					<table class="table table-hover table-bordered table-responsive-md mb-0">
-						<!--Table head-->
-						<thead>
-							<tr>
-								<th><a>Usuario<i class="fa fa-sort ml-1"></i></a></th>
-								<th class="th-lg"><a>Nombre<i class="fa fa-sort ml-1"></i></a></th>
-								<th class="th-lg"><a href="">Apellido paterno<i class="fa fa-sort ml-1"></i></a></th>
-								<th class="th-lg"><a href="">Apellido materno<i class="fa fa-sort ml-1"></i></a></th>
-								<th class="th-lg"><a href="">Correo<i class="fa fa-sort ml-1"></i></a></th>
-								<th><a href="">Editar<i class="fa fa-sort ml-1"></i></a></th>
-								<th><a href="">Eliminar<i class="fa fa-sort ml-1"></i></a></th>
-							</tr>
-						</thead>
-						<!--Table head-->
-						<!--Table body-->
-						<tbody>
+				<!--Table-->
+				<div id="tblUsuarios" style="margin:25px;">
+				
+					<div>
+						<div class="row text-center font-weight-bold align-middle">
+							<div class="col-md-1 border p-0 align-middle">Usuario</div>
+							<div class="col-md-1 border p-0 align-middle">Nombre</div>
+							<div class="col-md-1 border p-0 align-middle">Apellido paterno</div>
+							<div class="col-md-1 border p-0 align-middle">Apellido materno</div>
+							<div class="col-md-5 border p-0 align-middle">Correo</div>
+							<div class="col-md-1 border p-0 align-middle">Privilegios</div>
+							<div class="col-md-1 border p-0 align-middle">Editar</div>
+							<div class="col-md-1 border p-0 align-middle">Eliminar</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1 p-0">
+								<input id="fltUsuario" class="filtro w-100"/>
+							</div>
+							<div class="col-md-1 p-0">
+								<input id="fltNombre" class="filtro w-100"/>
+							</div>
+							<div class="col-md-1 p-0">
+								<input id="fltApellidoP" class="filtro w-100"/>
+							</div>
+							<div class="col-md-1 p-0">
+								<input id="fltApellidoM" class="filtro w-100"/>
+							</div>
+							<div class="col-md-5 p-0">
+								<input id="fltCorreo" class="filtro w-100"/>
+							</div>
+							<div class="col-md-1 border p-0">
+							</div>
+							<div class="col-md-1 border p-0">
+							</div>
+							<div class="col-md-1 border p-0">
+							</div>
+						</div>
+					</div>
+					
+					<div>
 						{{#each Usuarios}}
-							<tr>
-								<td>{{Usuario}}</td>
-								<td>{{Nombre}}</td>
-								<td>{{ApellidoPaterno}}</td>
-								<td>{{ApellidoMaterno}}</td>
-								<td>{{Correo}}</td>
-								<td class="text-center"><a class="editUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-								<td class="text-center"><a class="deleteUsuario" id="{{_id}}"  href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-							</tr>
+						<div class="row">
+							<div class="col-md-1 border text-truncate" title="{{Usuario}}">{{Usuario}}</div>
+							<div class="col-md-1 border text-truncate" title="{{Nombre}}">{{Nombre}}</div>
+							<div class="col-md-1 border text-truncate" title="{{ApellidoPaterno}}">{{ApellidoPaterno}}</div>
+							<div class="col-md-1 border text-truncate" title="{{ApellidoMaterno}}">{{ApellidoMaterno}}</div>
+							<div class="col-md-5 border text-truncate" title="{{Correo}}">{{Correo}}</div>
+							<div class="col-md-1 text-center border"><a class="privilegiosUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
+							<div class="col-md-1 text-center border"><a class="editUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
+							<div class="col-md-1 text-center border"><a class="deleteUsuario" id="{{_id}}"  href=""><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+						</div>
 						{{/each}}
-						</tbody>
-						<!--Table body-->
-					</table>
+					</div>
+					
+					<div>
+						<div class="row border">
+							<div class="col-md-12 text-center">
+							<select class="tblPaginacion">
+								<option>10</option>
+								<option>25</option>
+								<option>50</option>
+								<option>100</option>
+							</select>
+							<a herf="" class="badge badge-primary text-white inicio">Inicio</a>
+							<a herf="" class="badge badge-primary text-white anterior">Anterior</a>
+							Pagina
+							<input type="text" class="tblPagina" style="width:30px;" value="{{Pagina}}"/> de {{Paginas}} paginas.
+							<a herf="" class="badge badge-primary text-white siguiente">Siguiente</a>
+							<a herf="" class="badge badge-primary text-white fin">Fin</a>
+							{{Encontrados}} de {{Registros}} registros
+							</div>
+						</div>
+					</div>
+								
 				</div>
-				<hr class="my-0">
-				<!--Bottom Table UI-->
-				<div class="d-flex justify-content-center">
-					<!--Pagination -->
-					<nav class="my-4 pt-2">
-						<ul class="pagination pagination-circle pg-blue mb-0">
-							<!--First-->
-							<li class="page-item clearfix d-none d-md-block"><a class="page-link">Inicio</a></li>
-							<!--Arrow left-->
-							<li class="page-item">
-								<a class="page-link" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-								<span class="sr-only">Previous</span>
-							</a>
-							</li>
-							<!--Numbers-->
-							<li class="page-item active"><a class="page-link">1</a></li>
-							<!--Arrow right-->
-							<li class="page-item">
-								<a class="page-link" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-								<span class="sr-only">Next</span>
-							</a>
-							</li>
-							<!--First-->
-							<li class="page-item clearfix d-none d-md-block"><a class="page-link">Fin</a></li>
-						</ul>
-					</nav>
-					<!--/Pagination -->
-				</div>
-				<!--Bottom Table UI-->
 			</div>
 		</div>
 	</main>
+	
+	
 	<!-- Modal -->
 	<div class="modal fade" id="formaUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
