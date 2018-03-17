@@ -5,15 +5,17 @@ import { Mongo } from 'meteor/mongo';
 import { db } from '/imports/api/db';
 import { Session } from 'meteor/session'
 
+
 Template.usuarios.onCreated(function(){
-	Session.set({
+	this.Grid = new ReactiveVar({
 		filters:{},
 		pagination:10,
 		pagina: 1,
 		paginas: 1
 	});
 	Opciones();
-})
+});
+
 
 Template.usuarios.events({
 	
@@ -85,99 +87,40 @@ Template.usuarios.events({
 		var apellidoP = $("#fltApellidoP").val();
 		var apellidoM = $("#fltApellidoM").val();
 		var correo = $("#fltCorreo").val();
-		Session.set({
-			filters: {
-				Usuario: new RegExp(usuario,'gi'),
-				Nombre: new RegExp(nombre,'gi'),
-				ApellidoPaterno: new RegExp(apellidoP,'gi'),
-				ApellidoMaterno: new RegExp(apellidoM,'gi'),
-				Correo: new RegExp(correo,'gi')
-			}
-		});
-	}
-	,
-	
-	'change .tblPaginacion': function(event){
-		var paginacion = parseInt(event.target.value) ;
-		Session.set({
-			pagination: paginacion
-		});
-		Opciones();
-	}
-	,
-	
-	'keyup input.tblPagina': function(event){
-		var actual = (!isNaN(parseInt(event.target.value))) ? parseInt(event.target.value): 1;
-		Session.set({
-			pagina: actual
-		});
-		Opciones();
-	}
-	,
-	
-	'click .inicio': function(event){
-		Session.set({
-			pagina: 1
-		});
-		Opciones();
-	}
-	,
-	
-	'click .anterior': function(event){
-		var actual = Session.get('pagina');
-		var anterior = (actual-1 > 0) ? 1 : actual-1;
-		Session.set({
-			pagina: anterior
-		});
-		Opciones();
-	}
-	,
-	
-	'click .siguiente': function(event){
-		var actual = Session.get('pagina');
-		var siguiente = (actual+1 > Session.get('paginas')) ? 1 : actual+1;
-		Session.set({
-			pagina: siguiente
-		});
-		Opciones();
-	}
-	,
-	
-	'click .fin': function(event){
-		Session.set({
-			pagina: Session.get('paginas')
-		});
-		Opciones();
 	}
 	
 });
 
+
 Template.usuarios.helpers({
+	
 	Usuarios: function(){
-		return db.Usuario.find(Session.get('filters'),Session.get('options'));
+		return db.Usuario.find(Template.instance().Grid.get().filters, {});
 	}
 	,
+	
 	Encontrados: function(){
-		return db.Usuario.find(Session.get('filters'),Session.get('options')).count();
+		return db.Usuario.find(Template.instance().Grid.get().filters, {}).count();
 	}
 	,
+	
 	Registros: function(){
 		return db.Usuario.find({},{}).count()
 	}
 	,
 	
 	Pagina: function(){
-		return Session.get('pagina');
+		return Template.instance().Grid.get().pagina;
 	}
 	,
 	
 	Paginacion: function(){
-		return Session.get('pagination');
+		return Template.instance().Grid.get().pagination;
 	}
 	,
 	
 	Paginas: function(){
-		var paginas = Math.ceil(db.Usuario.find({},{}).count() / Session.get('pagination'));
+		var paginas = Math.ceil(db.Usuario.find(Template.instance().Grid.get().filters, {}).count());
 		Session.set({
 			paginas: paginas
 		})
@@ -186,19 +129,8 @@ Template.usuarios.helpers({
 	
 });
 
+
 function Opciones(){
-	var pagina = Session.get('pagina');
-	var paginacion = Session.get('pagination');
-	var inicio = pagina * paginacion - paginacion;
-	Session.set({
-		options:{
-			sort:{
-				Nombre:1
-			},
-			skip:inicio,
-			limit: paginacion
-		}
-	});
 }
 
 

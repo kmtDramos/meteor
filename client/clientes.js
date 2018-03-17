@@ -5,14 +5,14 @@ import { Mongo } from 'meteor/mongo';
 import { db } from '/imports/api/db';
 import { Session } from 'meteor/session'
 
-Template.privilegios.onCreated(function(){
+Template.clientes.onCreated(function(){
 	
 });
 
-Template.privilegios.helpers({
+Template.clientes.helpers({
 	
 });
 
-Template.privilegios.events({
+Template.clientes.events({
 	
 });

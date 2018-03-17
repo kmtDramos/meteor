@@ -6,8 +6,6 @@ import './main.html';
 
 import { db } from '/imports/api/db';
 
-Session.set({IdUsuario:''});
-
 Router.route('/', function () {
 	var template = (Session.get('IdUsuario') == '') ? 'login': 'inicio';
 	this.render(template, {});

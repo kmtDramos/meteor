@@ -8,30 +8,29 @@
 				
 					<div>
 						<div class="row text-center font-weight-bold align-middle">
-							<div class="col-md-1 border p-0 align-middle">Usuario</div>
-							<div class="col-md-1 border p-0 align-middle">Nombre</div>
-							<div class="col-md-1 border p-0 align-middle">Apellido paterno</div>
-							<div class="col-md-1 border p-0 align-middle">Apellido materno</div>
-							<div class="col-md-5 border p-0 align-middle">Correo</div>
+							<div class="col-md-2 border p-0 align-middle">Usuario</div>
+							<div class="col-md-2 border p-0 align-middle">Nombre</div>
+							<div class="col-md-2 border p-0 align-middle">Apellido paterno</div>
+							<div class="col-md-2 border p-0 align-middle">Apellido materno</div>
+							<div class="col-md-1 border p-0 align-middle">Log</div>
 							<div class="col-md-1 border p-0 align-middle">Privilegios</div>
 							<div class="col-md-1 border p-0 align-middle">Editar</div>
 							<div class="col-md-1 border p-0 align-middle">Eliminar</div>
 						</div>
 						<div class="row">
-							<div class="col-md-1 p-0">
+							<div class="col-md-2 p-0">
 								<input id="fltUsuario" class="filtro w-100"/>
 							</div>
-							<div class="col-md-1 p-0">
+							<div class="col-md-2 p-0">
 								<input id="fltNombre" class="filtro w-100"/>
 							</div>
-							<div class="col-md-1 p-0">
+							<div class="col-md-2 p-0">
 								<input id="fltApellidoP" class="filtro w-100"/>
 							</div>
-							<div class="col-md-1 p-0">
+							<div class="col-md-2 p-0">
 								<input id="fltApellidoM" class="filtro w-100"/>
 							</div>
-							<div class="col-md-5 p-0">
-								<input id="fltCorreo" class="filtro w-100"/>
+							<div class="col-md-1 border p-0">
 							</div>
 							<div class="col-md-1 border p-0">
 							</div>
@@ -45,11 +44,11 @@
 					<div>
 						{{#each Usuarios}}
 						<div class="row">
-							<div class="col-md-1 border text-truncate" title="{{Usuario}}">{{Usuario}}</div>
-							<div class="col-md-1 border text-truncate" title="{{Nombre}}">{{Nombre}}</div>
-							<div class="col-md-1 border text-truncate" title="{{ApellidoPaterno}}">{{ApellidoPaterno}}</div>
-							<div class="col-md-1 border text-truncate" title="{{ApellidoMaterno}}">{{ApellidoMaterno}}</div>
-							<div class="col-md-5 border text-truncate" title="{{Correo}}">{{Correo}}</div>
+							<div class="col-md-2 border text-truncate" title="{{Usuario}}">{{Usuario}}</div>
+							<div class="col-md-2 border text-truncate" title="{{Nombre}}">{{Nombre}}</div>
+							<div class="col-md-2 border text-truncate" title="{{ApellidoPaterno}}">{{ApellidoPaterno}}</div>
+							<div class="col-md-2 border text-truncate" title="{{ApellidoMaterno}}">{{ApellidoMaterno}}</div>
+							<div class="col-md-1 text-center border"><a class="logUsuario" id="{{_id}}"  href=""><i class="fa fa-list" aria-hidden="true"></i></a></div>
 							<div class="col-md-1 text-center border"><a class="privilegiosUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
 							<div class="col-md-1 text-center border"><a class="editUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
 							<div class="col-md-1 text-center border"><a class="deleteUsuario" id="{{_id}}"  href=""><i class="fa fa-trash" aria-hidden="true"></i></a></div>
@@ -60,19 +59,9 @@
 					<div>
 						<div class="row border">
 							<div class="col-md-12 text-center">
-							<select class="tblPaginacion">
-								<option>10</option>
-								<option>25</option>
-								<option>50</option>
-								<option>100</option>
-							</select>
-							<a herf="" class="badge badge-primary text-white inicio">Inicio</a>
-							<a herf="" class="badge badge-primary text-white anterior">Anterior</a>
-							Pagina
-							<input type="text" class="tblPagina" style="width:30px;" value="{{Pagina}}"/> de {{Paginas}} paginas.
-							<a herf="" class="badge badge-primary text-white siguiente">Siguiente</a>
-							<a herf="" class="badge badge-primary text-white fin">Fin</a>
-							{{Encontrados}} de {{Registros}} registros
+								Página <button id="btn-prev" class="small-btn" alt="prev">&lt;</button>
+								<input id="" class="text-center" value="1" style="width:30px;" />
+								<button id="btn-next" class="small-btn" alt="next">&gt;</button>
 							</div>
 						</div>
 					</div>
