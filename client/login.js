@@ -17,6 +17,7 @@ Template.login.events({
 			Session.set({
 				IdUsuario:Usuario._id
 			});
+			localStorage.setItem("IdUsuario", Usuario._id);
 		}
 		else
 		{

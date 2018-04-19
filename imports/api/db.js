@@ -5,5 +5,7 @@ export const db = {
 	Cliente: new Mongo.Collection('Cliente'),
 	Proveedor: new Mongo.Collection('Proveedor'),
 	Pagina: new Mongo.Collection('Pagina'),
-	Privilegio: new Mongo.Collection('Privilegio')
+	Privilegio: new Mongo.Collection('Privilegio'),
+	CentroDeCosto: new Mongo.Collection('CentroDeCosto'),
+	Factura: new Mongo.Collection('Factura')
 }

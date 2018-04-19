@@ -1,10 +1,214 @@
-<template name="clientes">
+﻿<template name="clientes">
 	<main>
 		<div class="container">
-			<button class="btn btn-primary">Agregar</button>
-			<div id="card card-cascade narrower mt-2">
-				<div id="tblClientes"></div>
-			</div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formaAgregarCliente">Agregar</button>
+			<table id="clientes" class="display">
+				<thead>
+					<tr>
+						<th>Razón Social</th>
+						<th>Vendedor</th>
+						<th>Ver</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each Clientes}}
+					<tr>
+						<td>{{RazonSocial}}</td>
+						<td>{{Usuario}}</td>
+						<td><a class="editCliente" id="{{_id}}"><i class="fas fa-edit"></i></a></td>
+					</tr>
+					{{/each}}
+				</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
 		</div>
 	</main>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="formaAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="AgregarLable" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="AgregarLable">Cliente</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="max-height: 480px;">
+					<form name="formAgregarUsuario" id="formAgregarCliente">	
+						<div class="md-form">
+							<input type="text" id="razonsocial" name="razonsocial" class="form-control" placeholder="Razón Social" />
+						</div>
+						<div class="md-form">
+							<input type="text" id="rfc" name="rfc" class="form-control" placeholder="RFC" />
+						</div>
+						<div class="md-form">
+							<select id="usuario" class="form-control" style="border:none;border-bottom:1px solid #bdbdbd;">
+								<option value="">Usuario asignado</option>
+								{{#each Usuarios}}
+								<option value="{{_id}}">{{Nombre}} {{ApellidoPaterno}} {{ApellidoMaterno}}</option>
+								{{/each}}
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" id="btnAgregarCliente">Guardar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="modalEditarCliente" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<ul class="tabs nav nav-tabs">
+						<li class="tab-label active">
+							<a class="nav-link" data-toggle="tab" href="#tab-cliente">Cliente</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-oportunidades">Oportunidades</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-actividades">Actividades</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-proyectos">Proyectos</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-cotizaciones">Cotizaciones</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-facturas">Facturas</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-compras">Compras</a>
+						</li>
+						<li class="tab-label">
+							<a class="nav-link" data-toggle="tab" href="#tab-pagos">Pagos</a>
+						</li>
+					</ul>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="tab-content">
+						<div id="tab-cliente" class="tab-pane fade in active">
+							<form name="formEditarUsuario" id="formEditarCliente">	
+								<div class="md-form">
+									<input type="text" id="razonsocial" name="razonsocial" class="form-control" placeholder="Razón Social" />
+								</div>
+								<div class="md-form">
+									<input type="text" id="rfc" name="rfc" class="form-control" placeholder="RFC" />
+								</div>
+								<div class="md-form">
+									<select id="usuario" name="usuario" class="form-control" style="border:none;border-bottom:1px solid #bdbdbd;">
+										<option value="">Usuario asignado</option>
+										{{#each Usuarios}}
+										<option value="{{_id}}">{{Nombre}} {{ApellidoPaterno}} {{ApellidoMaterno}}</option>
+										{{/each}}
+									</select>
+								</div>
+								<div class="text-right">
+									<button type="button" class="btn btn-success">Guardar</button>
+								</div>
+							</form>
+						</div>
+						<div id="tab-oportunidades" class="tab-pane fade">
+							<div>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarOportunidad">Agregar</button>
+								<table class="display" id="oportunidades">
+									<thead>
+										<tr>
+											<th>Clave</th>
+											<th>Nombre</th>
+											<th>Fecha creación</th>
+											<th>Fecha cierre</th>
+											<th>Autorizado</th>
+											<th>Centro de costos</th>
+										</tr>
+									</thead>
+									<tbody>
+										{{#each Oportunidades}}
+										<tr>
+											<td>{{_id}}</td>
+											<td>{{Nombre}}</td>
+											<td>{{FechaCreacion}}</td>
+											<td>{{FechaCierre}}</td>
+											<td>{{Autorizado}}</td>
+											<td>{{CentroDeCostos}}</td>
+										</tr>
+										{{/each}}
+									</tbody>
+									<tfoot>
+									</tfoot>
+								</table>
+							</div>
+							
+							<div class="modal" id="modalAgregarOportunidad" tabindex="2" role="dialog" aria-labelledby="lblAgregarOportunidad" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="lblAgregarOportunidad">Oportunidad</h5>
+											<button type="button" class="close" onclick="$('#modalAgregarOportunidad').modal('hide')" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form id="formaAgregarOportunidad">
+												<div class="md-form">
+													<input type="text" id="cliente" class="form-control" placeholder="Cliente" readonly/>
+												</div>
+												<div class="md-form">
+													<input type="text" id="nombre" class="form-control" placeholder="Nombre oportunidad"/>
+												</div>
+												<div class="md-form">
+													<textarea id="descripcion" class="form-control md-textarea" placeholder="Descripcion"></textarea>
+												</div>
+												<div style="padding-top: 2rem;">
+													<span>Participantes</span>
+													<ul style="margin: 0px; padding: 0px;">
+													{{#each Usuarios}}
+													<li style="list-style: none; padding: 0px;">
+														<lable><input type="checkbox" id="usuario" name="usuario" value="{{_id}}"/> {{Nombre}} {{ApellidoPaterno}} {{ApellidoMaterno}}</lable>
+													</li>
+													{{/each}}
+													</ul>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success" id="btnAgregarCentroDeCostos">Guardar</button>
+											<button type="button" class="btn btn-danger" onclick="$('#modalAgregarOportunidad').modal('hide')">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tab-actividades" class="tab-pane fade">
+
+						</div>
+						<div id="tab-proyectos" class="tab-pane fade">
+
+						</div>
+						<div id="tab-cotizaciones" class="tab-pane fade">
+
+						</div>
+						<div id="tab-facturas" class="tab-pane fade">
+
+						</div>
+						<div id="tab-compras" class="tab-pane fade">
+
+						</div>
+						<div id="tab-pagos" class="tab-pane fad">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

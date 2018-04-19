@@ -7,13 +7,6 @@ import { Session } from 'meteor/session'
 
 
 Template.usuarios.onCreated(function(){
-	this.Grid = new ReactiveVar({
-		filters:{},
-		pagination:10,
-		pagina: 1,
-		paginas: 1
-	});
-	Opciones();
 });
 
 
@@ -95,42 +88,9 @@ Template.usuarios.events({
 Template.usuarios.helpers({
 	
 	Usuarios: function(){
-		return db.Usuario.find(Template.instance().Grid.get().filters, {});
-	}
-	,
-	
-	Encontrados: function(){
-		return db.Usuario.find(Template.instance().Grid.get().filters, {}).count();
-	}
-	,
-	
-	Registros: function(){
-		return db.Usuario.find({},{}).count()
-	}
-	,
-	
-	Pagina: function(){
-		return Template.instance().Grid.get().pagina;
-	}
-	,
-	
-	Paginacion: function(){
-		return Template.instance().Grid.get().pagination;
-	}
-	,
-	
-	Paginas: function(){
-		var paginas = Math.ceil(db.Usuario.find(Template.instance().Grid.get().filters, {}).count());
-		Session.set({
-			paginas: paginas
-		})
-		return paginas;
+		return db.Usuario.find({}, {});
 	}
 	
 });
-
-
-function Opciones(){
-}
 
 

@@ -2,72 +2,36 @@
 	<main>
 		<div class="container">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formaUsuario">Agregar</button>
-			<div class="card card-cascade narrower mt-2">
 				<!--Table-->
-				<div id="tblUsuarios" style="margin:25px;">
-				
-					<div>
-						<div class="row text-center font-weight-bold align-middle">
-							<div class="col-md-2 border p-0 align-middle">Usuario</div>
-							<div class="col-md-2 border p-0 align-middle">Nombre</div>
-							<div class="col-md-2 border p-0 align-middle">Apellido paterno</div>
-							<div class="col-md-2 border p-0 align-middle">Apellido materno</div>
-							<div class="col-md-1 border p-0 align-middle">Log</div>
-							<div class="col-md-1 border p-0 align-middle">Privilegios</div>
-							<div class="col-md-1 border p-0 align-middle">Editar</div>
-							<div class="col-md-1 border p-0 align-middle">Eliminar</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2 p-0">
-								<input id="fltUsuario" class="filtro w-100"/>
-							</div>
-							<div class="col-md-2 p-0">
-								<input id="fltNombre" class="filtro w-100"/>
-							</div>
-							<div class="col-md-2 p-0">
-								<input id="fltApellidoP" class="filtro w-100"/>
-							</div>
-							<div class="col-md-2 p-0">
-								<input id="fltApellidoM" class="filtro w-100"/>
-							</div>
-							<div class="col-md-1 border p-0">
-							</div>
-							<div class="col-md-1 border p-0">
-							</div>
-							<div class="col-md-1 border p-0">
-							</div>
-							<div class="col-md-1 border p-0">
-							</div>
-						</div>
-					</div>
-					
-					<div>
-						{{#each Usuarios}}
-						<div class="row">
-							<div class="col-md-2 border text-truncate" title="{{Usuario}}">{{Usuario}}</div>
-							<div class="col-md-2 border text-truncate" title="{{Nombre}}">{{Nombre}}</div>
-							<div class="col-md-2 border text-truncate" title="{{ApellidoPaterno}}">{{ApellidoPaterno}}</div>
-							<div class="col-md-2 border text-truncate" title="{{ApellidoMaterno}}">{{ApellidoMaterno}}</div>
-							<div class="col-md-1 text-center border"><a class="logUsuario" id="{{_id}}"  href=""><i class="fa fa-list" aria-hidden="true"></i></a></div>
-							<div class="col-md-1 text-center border"><a class="privilegiosUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-							<div class="col-md-1 text-center border"><a class="editUsuario" id="{{_id}}"  href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-							<div class="col-md-1 text-center border"><a class="deleteUsuario" id="{{_id}}"  href=""><i class="fa fa-trash" aria-hidden="true"></i></a></div>
-						</div>
-						{{/each}}
-					</div>
-					
-					<div>
-						<div class="row border">
-							<div class="col-md-12 text-center">
-								Página <button id="btn-prev" class="small-btn" alt="prev">&lt;</button>
-								<input id="" class="text-center" value="1" style="width:30px;" />
-								<button id="btn-next" class="small-btn" alt="next">&gt;</button>
-							</div>
-						</div>
-					</div>
-								
-				</div>
-			</div>
+				<table id="usuarios" class="display">
+					<thead>
+						<tr>
+							<th>Usuario</th>
+							<th>Nombre</th>
+							<th>Apellido paterno</th>
+							<th>Apellido materno</th>
+							<th>Privilegios</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+					{{#each Usuarios}}
+						<tr>
+							<td>{{Usuario}}</td>
+							<td>{{Nombre}}</td>
+							<td>{{ApellidoPaterno}}</td>
+							<td>{{ApellidoMaterno}}</td>
+							<td><a class="privilegiosUsuario" id="{{_id}}"><i class="fas fa-clipboard-list"></i></a></td>
+							<td><a class="editUsuario" id="{{_id}}"><i class="fas fa-edit"></i></a></td>
+							<td><a class="deleteUsuario" id="{{_id}}"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+					{{/each}}
+					</tbody>
+					<tfoot>
+					</tfoot>
+				</table>
+				<script>$("#usuarios").DataTable();</script>
 		</div>
 	</main>
 	

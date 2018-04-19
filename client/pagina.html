@@ -1,2 +1,54 @@
 ﻿<template name="pagina">
+    <main>
+        <div class="container">
+            <button type="button" id="btnAgregarPagina" data-toggle="modal" data-target="#formaAgregarPagina" class="btn btn-primary">Agregar</button>
+            <table id="paginas" class="display">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+						<th>Ubicacion</th>
+						<th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Paginas}}
+                    <tr>
+                        <td>{{Nombre}}</td>
+						<td>{{Url}}</td>
+						<td><a class="deletePagina" id="{{_id}}"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- Modal -->
+	<div class="modal fade" id="formaAgregarPagina" tabindex="-1" role="dialog" aria-labelledby="AgregarLable" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="AgregarLable">Pagina</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="max-height: 480px; overflow: auto;">
+					<form name="formAgregarPagina" id="formAgregarPagina">	
+						<div class="md-form">
+							<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" />
+						</div>
+						<div class="md-form">
+							<input type="text" id="url" name="url" class="form-control" placeholder="URL" />
+						</div>
+						<div class="md-form">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" id="btnAgregarPagina">Guardar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

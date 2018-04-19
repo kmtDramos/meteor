@@ -59,4 +59,11 @@
 		
 		.navbar-nav .nav-item a{
 			color: #fff;
-		}
+        }
+        
+        .select-combo{
+            border: none;
+            border-bottom: 1px solid #BBB;
+            background-color: #FFF;
+            color: #999;
+        }
